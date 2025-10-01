@@ -1,0 +1,241 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Untuk Ayang</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&family=Great+Vibes&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --accent: #ff6b81;
+      --muted: #6b6b6b;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;min-height:100vh;
+      font-family: 'Poppins', sans-serif;
+      color:#222;overflow:hidden;
+    }
+    .slide{
+      display:none;
+      min-height:100vh;
+      padding:32px;
+      justify-content:center;
+      align-items:center;
+      background-size:cover;
+      background-position:center;
+    }
+    .slide.active{display:flex !important;}
+
+    .card{
+      width:100%;max-width:980px;background:rgba(255,255,255,0.88);
+      border-radius:18px;box-shadow:0 10px 40px rgba(0,0,0,0.12);
+      padding:28px;position:relative;overflow:hidden;
+    }
+    header{display:flex;gap:16px;align-items:center;position:relative}
+    .logo{width:74px;height:74px;border-radius:14px;background:linear-gradient(180deg,#fff, #ffdede);
+      display:flex;align-items:center;justify-content:center;font-weight:800;font-size:20px;color:var(--accent);
+    }
+    .foto-dia{
+      position:absolute;right:0;top:0;width:64px;height:64px;border-radius:50%;
+      border:3px solid #fff;background-size:cover;background-position:center;
+    }
+    h1{font-size:28px;margin:0}
+    .subtitle{color:var(--muted);margin-top:6px;font-size:14px}
+    .effect-text{margin-top:10px;font-size:20px;font-weight:700;color:var(--accent);text-shadow:0 0 8px rgba(255,107,129,0.6);animation: glow 2s ease-in-out infinite alternate}
+    @keyframes glow{from{text-shadow:0 0 5px #ff6b81;}to{text-shadow:0 0 18px #ff6b81;}}
+
+    .lyrics{margin-top:18px;padding:18px;border-radius:12px}
+    .lyric-line{font-family:'Great Vibes', cursive;font-size:30px;color:var(--accent)}
+    .lyric-small{color:var(--muted);margin-top:8px;font-size:13px}
+
+    .controls{display:flex;gap:12px;margin-top:14px;flex-wrap:wrap;justify-content:center}
+    .btn{padding:10px 16px;border-radius:12px;border:0;font-weight:600;cursor:pointer}
+    .btn-play{background:linear-gradient(90deg,#ff7a95,#ffafc2);color:#fff}
+    .btn-next{background:var(--accent);color:#fff}
+    .btn-back{background:#aaa;color:#fff}
+
+    /* Slide 2 kata */
+    .kata{font-size:24px;text-align:center;line-height:1.5;color:#444;}
+
+    /* Galeri */
+    .photo-grid{
+      display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;
+    }
+    .photo{
+      flex:0 0 85%;height:300px;border-radius:12px;
+      background-size:cover;background-position:center;position:relative;
+    }
+    .caption{
+      position:absolute;bottom:8px;left:0;right:0;text-align:center;
+      background:rgba(0,0,0,0.5);color:#fff;padding:4px;border-radius:0 0 12px 12px;font-size:14px;
+    }
+
+    /* Halaman akhir */
+    .final{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;}
+    .final img{max-width:100%;border-radius:20px;box-shadow:0 10px 30px rgba(0,0,0,0.2);}
+    .final h2{margin-top:20px;color:var(--accent);font-size:28px}
+
+    /* floating text */
+    .floating-text{
+      position:absolute;color:var(--accent);font-family:'Great Vibes', cursive;
+      font-size:28px;opacity:0;animation: floatUp 5s ease forwards;
+    }
+    @keyframes floatUp{
+      0%{opacity:1;transform:translateY(20px) scale(0.8);}
+      100%{opacity:0;transform:translateY(-120px) scale(1.2);}
+    }
+    .note{
+      margin-top:10px;font-size:13px;color:#555;text-align:center;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- SLIDE 1 -->
+  <div class="slide active" id="slide1" style="background-image:url('bg.jpg')">
+    <div class="card">
+      <header>
+        <div class="logo">♥︎</div>
+        <div>
+          <h1>Sayangnya Akuu</h1>
+          <div class="effect-text">Always and Forever 💖</div>
+          <div class="subtitle">Untuk seseorang yang sangat spesial 💌</div>
+        </div>
+        <div class="foto-dia" style="background-image:url('1 (3).jpg')"></div>
+      </header>
+      <div class="lyrics">
+        <div class="lyric-line">You will be my girl, my girl —</div>
+        <div class="lyric-small">🎶</div>
+      </div>
+      <div class="note">👉 Klik putar musik dan klik next</div>
+      <div class="controls">
+        <button class="btn btn-play" id="playBtn">▶️ Putar Musik</button>
+        <button class="btn btn-next" onclick="nextSlide()">➡️ Next</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 2 -->
+  <div class="slide" id="slide2" style="background-image:url('bg.jpg')">
+    <div class="card">
+      <div class="kata">
+        "Terima kasih sudah menjadi bagian terindah dalam hidupku.<br>
+        Kamu adalah alasanku tersenyum setiap hari 💕"<br><br>
+        "Meski kadang kamu males ngabarin, males kirim pap 😅<br>
+        aku cuma mau bilang komunikasi itu penting banget buat kita.<br>
+        Aku sayang kamu ❤️"
+      </div>
+      <div class="controls">
+        <button class="btn btn-back" onclick="prevSlide()">⬅️ Back</button>
+        <button class="btn btn-next" onclick="nextSlide()">➡️ Next</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 3 -->
+  <div class="slide" id="slide3" style="background-image:url('bg.jpg')">
+    <div class="card">
+      <h2>Galeri Bersama Ayanggg</h2>
+      <div class="photo-grid" style="margin-top:12px">
+        <div class="photo" style="background-image:url('1.jpg')"><div class="caption">Pertama kali muncak sama ayang</div></div>
+        <div class="photo" style="background-image:url('1 (3).jpg')"><div class="caption">pertama kali dikirim pap ayang tanpa sekali liat</div></div>
+        <div class="photo" style="background-image:url('2.jpg')"><div class="caption">habis itu kita mulai tambah deket mancing di indohanghout</div></div>
+        <div class="photo" style="background-image:url('3.jpg')"><div class="caption">awal gamau ava tinggi, tapi karena kamu yang minta aku jadi mau dan aku suka</div></div>
+        <div class="photo" style="background-image:url('4.jpg')"><div class="caption">ini view paling bagus sih menurutku</div></div>
+        <div class="photo" style="background-image:url('15.png')"><div class="caption">pemandangannya indah tapi jauh lebih indah jika memandangimu</div></div>
+        <div class="photo" style="background-image:url('1 (2).jpg')"><div class="caption">lucu banget ayang aku</div></div>
+        <div class="photo" style="background-image:url('12.jpg')"><div class="caption">otw potobot langsung sm ayang hehe</div></div>
+        <div class="photo" style="background-image:url('11.jpg')"><div class="caption">hehe maap ketiduran ayang ngantuk banget</div></div>
+        <div class="photo" style="background-image:url('14.png')"><div class="caption">HEHEHHE AYANGGG</div></div>
+        <div class="photo" style="background-image:url('1 (1).jpg')"><div class="caption">cantiknya punya kenshin ini</div></div>
+        <div class="photo" style="background-image:url('9.png')"><div class="caption">peluk jauh ayangg</div></div>
+        <div class="photo" style="background-image:url('7.png')"><div class="caption">selfie stick sama ayang</div></div>
+        <div class="photo" style="background-image:url('1 (4).jpg')"><div class="caption">ahhhhh berasa beneran dikiss ayang</div></div>
+        <div class="photo" style="background-image:url('16.png')"><div class="caption">MAUUUUU AYANGGGGGGGG</div></div>
+        <div class="photo" style="background-image:url('13.png')"><div class="caption">I LOVE YOU SAYANGGG</div></div>
+      </div>
+      <div class="controls">
+        <button class="btn btn-back" onclick="prevSlide()">⬅️ Back</button>
+        <button class="btn btn-next" onclick="nextSlide()">➡️ Next</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 4 -->
+  <div class="slide" id="slide4" style="background-image:url('1 (5).jpg')">
+    <div class="final">
+      <h2>💖💖💖💖💖</h2>
+      <div class="controls">
+        <button class="btn btn-back" onclick="prevSlide()">⬅️ Back</button>
+        <button class="btn btn-next" onclick="goToSlide(1)">🔄 Kembali ke Awal</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- musik -->
+  <audio id="music" src="girl.mp3" preload="auto"></audio>
+
+<script>
+  let current = 1;
+  function showSlide(n){
+    document.querySelectorAll('.slide').forEach((s)=>s.classList.remove('active'));
+    document.getElementById("slide"+n).classList.add("active");
+    current=n;
+    if(n===1){ spawnFloatingText(); }
+  }
+  function nextSlide(){
+    if(current<4){ showSlide(current+1); triggerConfetti(); }
+  }
+  function prevSlide(){ if(current>1){ showSlide(current-1); } }
+  function goToSlide(n){ showSlide(n); }
+
+  // musik
+  const playBtn = document.getElementById('playBtn');
+  const music = document.getElementById('music');
+  playBtn.addEventListener('click', async()=>{
+    try{
+      if(music.paused){
+        await music.play();
+        playBtn.textContent="⏸️ Pause Musik";
+      }else{
+        music.pause();
+        playBtn.textContent="▶️ Putar Musik";
+      }
+    }catch(e){ alert("File musik tidak ditemukan"); }
+  });
+
+  // efek confetti sederhana
+  function triggerConfetti(){
+    for(let i=0;i<20;i++){
+      let conf=document.createElement("div");
+      conf.textContent="✨";
+      conf.style.position="fixed";
+      conf.style.left=Math.random()*100+"vw";
+      conf.style.top="-20px";
+      conf.style.fontSize="20px";
+      conf.style.animation=`fall ${2+Math.random()*2}s linear forwards`;
+      document.body.appendChild(conf);
+      setTimeout(()=>conf.remove(),4000);
+    }
+  }
+  const style=document.createElement("style");
+  style.innerHTML=`@keyframes fall{to{transform:translateY(110vh) rotate(360deg);opacity:0}}`;
+  document.head.appendChild(style);
+
+  // efek floating text slide 1
+  function spawnFloatingText(){
+    for(let i=0;i<8;i++){
+      let ft=document.createElement("div");
+      ft.className="floating-text";
+      ft.style.left=Math.random()*80+10+"%";
+      ft.style.top="60%";
+      ft.textContent="You will be my girl";
+      document.body.appendChild(ft);
+      setTimeout(()=>ft.remove(),5000);
+    }
+  }
+  spawnFloatingText(); // awal load slide1
+</script>
+</body>
+</html>
